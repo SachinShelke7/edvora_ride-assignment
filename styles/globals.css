@@ -6,7 +6,7 @@
 
 @layer components {
   .main {
-    @apply bg-[#E5E5E5];
+    @apply bg-[#E5E5E5] font-Inter select-none;
   }
   .main_section {
     @apply bg-[#292929] 2xl:container mx-auto;
@@ -15,6 +15,9 @@
     @apply bg-[#101010] text-white h-[5.25rem] flex justify-between items-center px-5;
   }
   .category {
-    @apply text-[#D0CBCB] active:text-[#FFF] text-[18px] font-[700] border-transparent py-[29px] border-b-2 active:border-white cursor-pointer;
+    @apply text-[#D0CBCB] active:text-[#FFF] text-[18px] font-[700] border-transparent my-[29px] pb-1 border-b-2 active:border-white cursor-pointer;
+  }
+  .ride_card {
+    @apply bg-[#171717] px-[29px] rounded-[10px] h-[12.5rem] w-full;
   }
 }
