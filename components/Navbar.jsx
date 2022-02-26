@@ -1,6 +1,9 @@
-import React from "react";
+import axios from "axios";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
+  console.log(user);
   return (
     <div className="navbar">
       <div>
@@ -8,9 +11,11 @@ const Navbar = () => {
       </div>
       <div className="flex justify-between items-center space-x-5">
         <div>
-          <h5 className="text-[20px] cursor-pointer">User Name</h5>
+          <h5 className="text-[20px] cursor-pointer">{user.name}</h5>
         </div>
-        <div className="bg-white w-7 h-7 p-5 rounded-full cursor-pointer"></div>
+        <div className="w-10 h-10 rounded-full overflow-hidden cursor-pointer">
+          <img src={user.url} alt="profile" className="hover:scale-110" />
+        </div>
       </div>
     </div>
   );
