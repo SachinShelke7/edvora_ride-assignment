@@ -8,10 +8,12 @@ const Menu = ({ rides }) => {
         Filters
       </h3>
       <div className="relative max-w-xs mx-auto">
-        <div className="absolute right-2 top-2">
-          <MdOutlineArrowDropDown size={30} color="white" />
-        </div>
-        <select className="w-full p-2.5 text-white bg-[#232323] outline-none rounded-md shadow-sm appearance-none">
+        <MdOutlineArrowDropDown
+          size={30}
+          color="white"
+          className="absolute right-2 top-2"
+        />
+        <select className="menu_select">
           {rides &&
             rides?.map((ride, key) => {
               return <option key={key}>{ride.state}</option>;
@@ -19,10 +21,12 @@ const Menu = ({ rides }) => {
         </select>
       </div>
       <div className="relative max-w-xs mx-auto mt-5">
-        <div className="absolute right-2 top-2">
-          <MdOutlineArrowDropDown size={30} color="white" />
-        </div>
-        <select className="w-full p-2.5 text-white bg-[#232323] outline-none rounded-md shadow-sm appearance-none">
+        <MdOutlineArrowDropDown
+          size={30}
+          color="white"
+          className="absolute right-2 top-2"
+        />
+        <select className="menu_select">
           {rides &&
             rides?.map((ride, key) => {
               return <option key={key}>{ride.city}</option>;
