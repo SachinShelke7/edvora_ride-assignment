@@ -34,10 +34,10 @@ const Ride = ({ ride, t }) => {
           </div>
         </div>
         <div className="max-w-fit h-[23px] flex space-x-2 items-center py-5 md:py-0">
-          <div className="bg-black rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
+          <div className="bg-[#101010] rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
             {ride.city}
           </div>
-          <div className="bg-black rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
+          <div className="bg-[#101010] rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
             {ride.state}
           </div>
         </div>

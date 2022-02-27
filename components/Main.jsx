@@ -6,6 +6,7 @@ import Ride from "./Ride";
 
 const Main = ({ rides }) => {
   const [toggle, setToggle] = useState(false);
+
   const [nearest, setNearest] = useState("true");
   const [upcoming, setUpcoming] = useState(false);
   const [past, setPast] = useState(false);
@@ -25,11 +26,12 @@ const Main = ({ rides }) => {
     setNearest(false);
     setUpcoming(false);
   }
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
         <div className="flex sm:space-x-10">
-          <p className="category" onClick={handleNearest}>
+          <p className="category_active" onClick={handleNearest}>
             Nearest rides
           </p>
           <p className="category" onClick={handleUpcoming}>
@@ -66,8 +68,8 @@ const Main = ({ rides }) => {
             })}
         </div>
       )}
-      {upcoming && <div>upcoming</div>}
-      {past && <div>past</div>}
+      {upcoming && <div className="text-white h-screen">upcoming</div>}
+      {past && <div className="text-white h-screen">past</div>}
     </div>
   );
 };
