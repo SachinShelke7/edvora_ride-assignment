@@ -3,7 +3,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 
 const Menu = ({ rides }) => {
   return (
-    <div className="bg-[#171717] p-[35px] rounded-xl m-5">
+    <div className="bg-[#171717] p-[35px] rounded-xl m-5 fixed top-0 right-[50px] w-[300px] border border-white">
       <h3 className="border-b pb-[12px] mb-[20px] text-[20px] font-[300] text-[#A5A5A5]">
         Filters
       </h3>

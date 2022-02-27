@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer components {
+  *::-webkit-scrollbar {
+    @apply hidden;
+  }
   .main {
     @apply bg-[#E5E5E5] font-Inter select-none;
   }
@@ -16,6 +19,9 @@
   }
   .category {
     @apply text-[#D0CBCB] active:text-[#FFF] text-[12px] mr-2 sm:text-[18px] sm:font-[700] border-transparent my-[29px] pb-1 border-b-2 active:border-white cursor-pointer;
+  }
+  .category_active {
+    @apply text-[#FFF] text-[12px] mr-2 sm:text-[18px] sm:font-[700] my-[29px] pb-1 border-b-2 border-white cursor-pointer;
   }
   .ride_card {
     @apply bg-[#171717] px-[29px] rounded-[10px] md:h-[12.5rem] w-[300px] sm:w-full py-5 md:py-0;

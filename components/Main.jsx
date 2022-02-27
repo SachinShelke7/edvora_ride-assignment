@@ -4,16 +4,42 @@ import React, { useState } from "react";
 import { MdSort, MdOutlineArrowDropDown } from "react-icons/md";
 import map from "../assets/map.svg";
 import Menu from "./Menu";
+import Ride from "./Ride";
 
 const Main = ({ rides }) => {
   const [toggle, setToggle] = useState(false);
+  const [nearest, setNearest] = useState("true");
+  const [upcoming, setUpcoming] = useState(false);
+  const [past, setPast] = useState(false);
+
+  function handleNearest() {
+    setNearest(true);
+    setUpcoming(false);
+    setPast(false);
+  }
+  function handleUpcoming() {
+    setUpcoming(true);
+    setNearest(false);
+    setPast(false);
+  }
+  function handlePast() {
+    setPast(true);
+    setNearest(false);
+    setUpcoming(false);
+  }
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
         <div className="flex sm:space-x-10">
-          <p className="category">Nearest rides</p>
-          <p className="category">Upcoming rides (4)</p>
-          <p className="category">Past rides (2)</p>
+          <p className="category" onClick={handleNearest}>
+            Nearest rides
+          </p>
+          <p className="category" onClick={handleUpcoming}>
+            Upcoming rides (4)
+          </p>
+          <p className="category" onClick={handlePast}>
+            Past rides (2)
+          </p>
         </div>
 
         <div className="transform transition-all duration-1000 flex items-center">
@@ -34,54 +60,16 @@ const Main = ({ rides }) => {
           </div>
         </div>
       </div>
-
-      {rides &&
-        rides.map((ride, key) => {
-          return (
-            <div className="ride_card pt-[26px] mt-10" key={key}>
-              <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
-                <div className="flex flex-col sm:flex-row sm:space-x-10 justify-center sm:items-center">
-                  <div className="">
-                    <img
-                      src={ride.map_url}
-                      alt="map"
-                      className="w-full sm:min-w-[296px] h-[148px] object-cover rounded-[10px]"
-                    />
-                  </div>
-                  <div className="pt-5 md:pt-0">
-                    <p className="sm:text-[18px] font-[500] text-[#CFCFCF]">
-                      Ride ID : <span className="text-white">{ride.id}</span>
-                    </p>
-                    <p className="text-[18px] font-[500] text-[#CFCFCF]">
-                      Origin Station :{" "}
-                      <span className="text-white">
-                        {ride.origin_station_code}
-                      </span>
-                    </p>
-                    <p className="text-[18px] font-[500] text-[#CFCFCF]">
-                      station_path :{" "}
-                      <span className="text-white">{ride.station_path}</span>
-                    </p>
-                    <p className="text-[18px] font-[500] text-[#CFCFCF]">
-                      Date : <span className="text-white">{ride.date}</span>
-                    </p>
-                    <p className="text-[18px] font-[500] text-[#CFCFCF]">
-                      Distance : <span className="text-white">0</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="max-w-fit h-[23px] flex space-x-2 items-center py-5 md:py-0">
-                  <div className="bg-black rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
-                    {ride.city}
-                  </div>
-                  <div className="bg-black rounded-full px-4 py-2 text-[12px] font-[500] text-white cursor-pointer">
-                    {ride.state}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {nearest && (
+        <div>
+          {rides &&
+            rides.map((ride, key) => {
+              return <Ride ride={ride} key={key} />;
+            })}
+        </div>
+      )}
+      {upcoming && <div>upcoming</div>}
+      {past && <div>past</div>}
     </div>
   );
 };
