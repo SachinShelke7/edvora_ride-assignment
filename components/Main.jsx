@@ -6,6 +6,7 @@ import map from "../assets/map.svg";
 import Menu from "./Menu";
 
 const Main = ({ rides }) => {
+  const [toggle, setToggle] = useState(false);
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
@@ -15,10 +16,15 @@ const Main = ({ rides }) => {
           <p className="category">Past rides (2)</p>
         </div>
 
-        <div className="px-2 text-[#F2F2F2] flex space-x-2 items-center cursor-pointer">
-          <Menu rides={rides} />
-          <MdSort size={18} />
-          <p className="text-[16px] font-[500]">Filter</p>
+        <div className="transform transition-all duration-1000 flex items-center">
+          {toggle && <Menu rides={rides} />}
+          <div
+            className="px-2 text-[#F2F2F2] flex space-x-2 items-center cursor-pointer"
+            onClick={() => setToggle((toggle) => !toggle)}
+          >
+            <MdSort size={18} />
+            <p className="text-[16px] font-[500]">Filter</p>
+          </div>
         </div>
       </div>
 
@@ -32,8 +38,6 @@ const Main = ({ rides }) => {
                     <img
                       src={ride.map_url}
                       alt="map"
-                      // width={250}
-                      // height={150}
                       className="w-full sm:min-w-[296px] h-[148px] object-cover rounded-[10px]"
                     />
                   </div>
