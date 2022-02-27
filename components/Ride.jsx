@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-const Ride = ({ ride, key }) => {
+const Ride = ({ ride, t }) => {
   return (
-    <div className="ride_card pt-[26px] mt-10" key={key}>
+    <div className="ride_card pt-[26px] mt-10" key={t}>
       <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
         <div className="flex flex-col sm:flex-row sm:space-x-10 justify-center sm:items-center">
           <div className="">

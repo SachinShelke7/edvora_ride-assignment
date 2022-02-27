@@ -6,10 +6,16 @@
 
 @layer components {
   *::-webkit-scrollbar {
-    @apply hidden;
+    @apply w-[10px];
+  }
+  *::-webkit-scrollbar-track {
+    @apply bg-[#292929];
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-[#101010] h-[5.3rem];
   }
   .main {
-    @apply bg-[#E5E5E5] font-Inter select-none;
+    @apply bg-[#292929] font-Inter select-none;
   }
   .main_section {
     @apply bg-[#292929] 2xl:container mx-auto;

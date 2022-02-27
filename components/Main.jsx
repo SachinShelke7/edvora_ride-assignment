@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
 import React, { useState } from "react";
-import { MdSort, MdOutlineArrowDropDown } from "react-icons/md";
-import map from "../assets/map.svg";
+import { MdSort } from "react-icons/md";
 import Menu from "./Menu";
 import Ride from "./Ride";
 
@@ -63,8 +61,8 @@ const Main = ({ rides }) => {
       {nearest && (
         <div>
           {rides &&
-            rides.map((ride, key) => {
-              return <Ride ride={ride} key={key} />;
+            rides.map((ride, t) => {
+              return <Ride ride={ride} t={t} key={t} />;
             })}
         </div>
       )}
