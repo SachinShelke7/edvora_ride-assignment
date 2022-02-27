@@ -19,11 +19,18 @@ const Main = ({ rides }) => {
         <div className="transform transition-all duration-1000 flex items-center">
           {toggle && <Menu rides={rides} />}
           <div
-            className="px-2 text-[#F2F2F2] flex space-x-2 items-center cursor-pointer"
+            className="px-2 text-[#F2F2F2]"
             onClick={() => setToggle((toggle) => !toggle)}
           >
-            <MdSort size={18} />
-            <p className="text-[16px] font-[500]">Filter</p>
+            <div className="text-[16px] font-[500]">
+              {!toggle && (
+                <div className="flex space-x-2 items-center cursor-pointer">
+                  <MdSort size={18} />
+                  <p>Filter</p>
+                </div>
+              )}
+              {toggle && <p className="cursor-pointer">CLOSE</p>}
+            </div>
           </div>
         </div>
       </div>
