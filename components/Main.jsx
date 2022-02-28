@@ -4,7 +4,22 @@ import { MdSort } from "react-icons/md";
 import Menu from "./Menu";
 import Ride from "./Ride";
 
-const Main = ({ rides }) => {
+const Main = ({ rides, user }) => {
+  function getDistance(stations, userStation) {
+    let distance,
+      minDistance = 100000;
+    for (let i = 0; i < stations.length; i++) {
+      if (stations[i] > userStation) {
+        distance = stations[i] - userStation;
+        if (distance < minDistance) minDistance = distance;
+      } else if (stations[i] === userStation) {
+        minDistance = 0;
+        break;
+      }
+    }
+    return minDistance;
+  }
+
   const [toggle, setToggle] = useState(false);
 
   const [nearest, setNearest] = useState("true");
@@ -15,18 +30,28 @@ const Main = ({ rides }) => {
   const [stylePast, setStylePast] = useState("category");
   const [upcomingRides, setUpcomingRides] = useState([]);
   const [pastRides, setPastRides] = useState([]);
+  const [nearRides, setNearRides] = useState([]);
 
   const date = new Date();
   let upcomingLength = upcomingRides.length;
   let pastLength = pastRides.length;
 
   useEffect(() => {
+    if (rides) {
+      rides.forEach(
+        (ride) =>
+          (ride.distance = getDistance(ride.station_path, user.station_code))
+      );
+      rides.sort((a, b) => (a.distance > b.distance ? 1 : -1));
+      setNearRides(rides);
+    }
+
     {
       rides &&
         setUpcomingRides(rides.filter((ride) => new Date(ride.date) >= date));
       setPastRides(rides.filter((ride) => new Date(ride.date) <= date));
     }
-  }, []);
+  }, [rides]);
 
   function handleNearest() {
     setNearest(true);
@@ -52,8 +77,6 @@ const Main = ({ rides }) => {
     setStyleUpcoming("category");
     setStylePast("category_active");
   }
-
-  console.log(upcomingRides);
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
@@ -89,8 +112,8 @@ const Main = ({ rides }) => {
       </div>
       {nearest && (
         <div>
-          {rides &&
-            rides.map((ride, t) => {
+          {nearRides &&
+            nearRides.map((ride, t) => {
               return <Ride ride={ride} t={t} key={t} />;
             })}
         </div>

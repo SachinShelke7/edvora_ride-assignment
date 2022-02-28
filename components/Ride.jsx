@@ -29,7 +29,7 @@ const Ride = ({ ride, t }) => {
               Date : <span className="text-white">{ride.date}</span>
             </p>
             <p className="text-[18px] font-[500] text-[#CFCFCF]">
-              Distance : <span className="text-white">0</span>
+              Distance : <span className="text-white">{ride.distance}</span>
             </p>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function Home({ rides, user }) {
         <div>
           <Navbar user={user} />
           <div className="px-5">
-            <Main rides={rides} />
+            <Main rides={rides} user={user} />
           </div>
         </div>
       </div>
