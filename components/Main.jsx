@@ -10,34 +10,46 @@ const Main = ({ rides }) => {
   const [nearest, setNearest] = useState("true");
   const [upcoming, setUpcoming] = useState(false);
   const [past, setPast] = useState(false);
+  const [styleNearest, setStyleNearest] = useState("category_active");
+  const [styleUpcoming, setStyleUpcoming] = useState("category");
+  const [stylePast, setStylePast] = useState("category");
 
   function handleNearest() {
     setNearest(true);
     setUpcoming(false);
     setPast(false);
+    setStyleNearest("category_active");
+    setStyleUpcoming("category");
+    setStylePast("category");
   }
   function handleUpcoming() {
     setUpcoming(true);
     setNearest(false);
     setPast(false);
+    setStyleNearest("category");
+    setStyleUpcoming("category_active");
+    setStylePast("category");
   }
   function handlePast() {
     setPast(true);
     setNearest(false);
     setUpcoming(false);
+    setStyleNearest("category");
+    setStyleUpcoming("category");
+    setStylePast("category_active");
   }
 
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
         <div className="flex sm:space-x-10">
-          <p className="category_active" onClick={handleNearest}>
+          <p className={`${styleNearest}`} onClick={handleNearest}>
             Nearest rides
           </p>
-          <p className="category" onClick={handleUpcoming}>
+          <p className={`${styleUpcoming}`} onClick={handleUpcoming}>
             Upcoming rides (4)
           </p>
-          <p className="category" onClick={handlePast}>
+          <p className={`${stylePast}`} onClick={handlePast}>
             Past rides (2)
           </p>
         </div>

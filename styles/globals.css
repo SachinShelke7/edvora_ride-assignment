@@ -33,6 +33,6 @@
     @apply bg-[#171717] px-[29px] rounded-[10px] md:h-[12.5rem] w-[300px] sm:w-full py-5 md:py-0;
   }
   .menu_select {
-    @apply w-full p-2.5 text-white bg-[#232323] outline-none rounded-md shadow-sm appearance-none;
+    @apply w-full p-2.5 text-white bg-[#232323] outline-none rounded-md shadow-sm appearance-none cursor-pointer;
   }
 }
