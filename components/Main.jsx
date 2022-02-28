@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdSort } from "react-icons/md";
 import Menu from "./Menu";
 import Ride from "./Ride";
@@ -13,6 +13,20 @@ const Main = ({ rides }) => {
   const [styleNearest, setStyleNearest] = useState("category_active");
   const [styleUpcoming, setStyleUpcoming] = useState("category");
   const [stylePast, setStylePast] = useState("category");
+  const [upcomingRides, setUpcomingRides] = useState([]);
+  const [pastRides, setPastRides] = useState([]);
+
+  const date = new Date();
+  let upcomingLength = upcomingRides.length;
+  let pastLength = pastRides.length;
+
+  useEffect(() => {
+    {
+      rides &&
+        setUpcomingRides(rides.filter((ride) => new Date(ride.date) >= date));
+      setPastRides(rides.filter((ride) => new Date(ride.date) <= date));
+    }
+  }, []);
 
   function handleNearest() {
     setNearest(true);
@@ -39,6 +53,7 @@ const Main = ({ rides }) => {
     setStylePast("category_active");
   }
 
+  console.log(upcomingRides);
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between">
@@ -47,10 +62,10 @@ const Main = ({ rides }) => {
             Nearest rides
           </p>
           <p className={`${styleUpcoming}`} onClick={handleUpcoming}>
-            Upcoming rides (4)
+            Upcoming rides ({upcomingLength})
           </p>
           <p className={`${stylePast}`} onClick={handlePast}>
-            Past rides (2)
+            Past rides ({pastLength})
           </p>
         </div>
 
@@ -80,8 +95,22 @@ const Main = ({ rides }) => {
             })}
         </div>
       )}
-      {upcoming && <div className="text-white h-screen">upcoming</div>}
-      {past && <div className="text-white h-screen">past</div>}
+      {past && (
+        <div>
+          {pastRides &&
+            pastRides.map((ride, t) => {
+              return <Ride ride={ride} t={t} key={t} />;
+            })}
+        </div>
+      )}
+      {upcoming && (
+        <div>
+          {upcomingRides &&
+            upcomingRides.map((ride, t) => {
+              return <Ride ride={ride} t={t} key={t} />;
+            })}
+        </div>
+      )}
     </div>
   );
 };
