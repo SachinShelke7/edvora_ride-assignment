@@ -1,8 +1,31 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
+import { useEffect, useState } from "react";
 
 export default function Home({ rides, user }) {
+  const [statesArray, setStatesArray] = useState([]);
+  const [cityArray, setCityArray] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+    setStatesArray(rides.map((item) => item.state));
+  }, []);
+
+  useEffect(() => {
+    const test = rides.filter((item) => item.state === selectedState);
+    setCityArray(test.map((item) => item.city));
+  }, [rides, selectedState]);
+
+  useEffect(() => {
+    const a = rides.filter((item) => item.city === selectedCity);
+
+    setResults(selectedCity && selectedState ? a : rides);
+  }, [selectedCity, selectedState]);
+
+  // const state = rides.map((item) => item.state);
+  console.log(results);
   return (
     <div className="main">
       <div className="main_section">
@@ -13,9 +36,16 @@ export default function Home({ rides, user }) {
         </Head>
         <div>
           <Navbar user={user} />
-          <div className="px-5">
-            <Main rides={rides} user={user} />
-          </div>
+          <Main
+            rides={results}
+            user={user}
+            statesArray={statesArray}
+            setSelectedState={setSelectedState}
+            setSelectedCity={setSelectedCity}
+            cityArray={cityArray}
+            selectedState={selectedState}
+            selectedCity={selectedCity}
+          />
         </div>
       </div>
     </div>

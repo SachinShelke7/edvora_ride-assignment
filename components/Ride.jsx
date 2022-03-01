@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-const Ride = ({ ride, t }) => {
+const Ride = ({ ride, index }) => {
   return (
-    <div className="ride_card pt-[26px] mt-10" key={t}>
+    <div className="ride_card pt-[26px] mt-10" key={index}>
       <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
         <div className="flex flex-col sm:flex-row sm:space-x-10 justify-center sm:items-center">
           <div className="">
@@ -18,11 +18,11 @@ const Ride = ({ ride, t }) => {
               Ride ID : <span className="text-white">{ride.id}</span>
             </p>
             <p className="text-[18px] font-[500] text-[#CFCFCF]">
-              Origin Station :{" "}
+              Origin Station :
               <span className="text-white">{ride.origin_station_code}</span>
             </p>
             <p className="text-[18px] font-[500] text-[#CFCFCF]">
-              station_path :{" "}
+              station_path :
               <span className="text-white">{ride.station_path}</span>
             </p>
             <p className="text-[18px] font-[500] text-[#CFCFCF]">

@@ -3,23 +3,18 @@ import React, { useEffect, useState } from "react";
 import { MdSort } from "react-icons/md";
 import Menu from "./Menu";
 import Ride from "./Ride";
+import getDistance from "./GetDistance";
 
-const Main = ({ rides, user }) => {
-  function getDistance(stations, userStation) {
-    let distance,
-      minDistance = 100000;
-    for (let i = 0; i < stations.length; i++) {
-      if (stations[i] > userStation) {
-        distance = stations[i] - userStation;
-        if (distance < minDistance) minDistance = distance;
-      } else if (stations[i] === userStation) {
-        minDistance = 0;
-        break;
-      }
-    }
-    return minDistance;
-  }
-
+const Main = ({
+  rides,
+  user,
+  setSelectedState,
+  setSelectedCity,
+  statesArray,
+  cityArray,
+  selectedState,
+  selectedCity,
+}) => {
   const [toggle, setToggle] = useState(false);
 
   const [nearest, setNearest] = useState("true");
@@ -33,6 +28,7 @@ const Main = ({ rides, user }) => {
   const [nearRides, setNearRides] = useState([]);
 
   const date = new Date();
+
   let upcomingLength = upcomingRides.length;
   let pastLength = pastRides.length;
 
@@ -78,7 +74,7 @@ const Main = ({ rides, user }) => {
     setStylePast("category_active");
   }
   return (
-    <div>
+    <div className="px-5 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between">
         <div className="flex sm:space-x-10">
           <p className={`${styleNearest}`} onClick={handleNearest}>
@@ -93,7 +89,17 @@ const Main = ({ rides, user }) => {
         </div>
 
         <div className="transform transition-all duration-1000 flex items-center">
-          {toggle && <Menu rides={rides} />}
+          {toggle && (
+            <Menu
+              rides={rides}
+              setSelectedState={setSelectedState}
+              setSelectedCity={setSelectedCity}
+              statesArray={statesArray}
+              cityArray={cityArray}
+              selectedState={selectedState}
+              selectedCity={selectedCity}
+            />
+          )}
           <div
             className="px-2 text-[#F2F2F2]"
             onClick={() => setToggle((toggle) => !toggle)}
@@ -113,24 +119,24 @@ const Main = ({ rides, user }) => {
       {nearest && (
         <div>
           {nearRides &&
-            nearRides.map((ride, t) => {
-              return <Ride ride={ride} t={t} key={t} />;
+            nearRides.map((ride, index) => {
+              return <Ride ride={ride} key={index} />;
             })}
         </div>
       )}
       {past && (
         <div>
           {pastRides &&
-            pastRides.map((ride, t) => {
-              return <Ride ride={ride} t={t} key={t} />;
+            pastRides.map((ride, index) => {
+              return <Ride ride={ride} key={index} />;
             })}
         </div>
       )}
       {upcoming && (
         <div>
           {upcomingRides &&
-            upcomingRides.map((ride, t) => {
-              return <Ride ride={ride} t={t} key={t} />;
+            upcomingRides.map((ride, index) => {
+              return <Ride ride={ride} key={index} />;
             })}
         </div>
       )}
